@@ -18,6 +18,8 @@ RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key
     #Installs chrome like a boss
     apt-get install -y --allow-unauthenticated google-chrome-stable
 
+RUN npm install nightwatch -g
+
 ENV DISPLAY=:99
 
 CMD /bin/bash
