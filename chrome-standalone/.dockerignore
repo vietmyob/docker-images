@@ -1,0 +1,5 @@
+*/.com.google*
+*/.org.chromeium.*
+*/node_modules
+*/reports
+.DS_Store
