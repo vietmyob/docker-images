@@ -2,7 +2,7 @@
 
 set -eu -o pipefail
 
-function cleanup {
+cleanup() {
   # make sure the state is pushed
   terraform remote push
 }
