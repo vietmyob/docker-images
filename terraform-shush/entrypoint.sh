@@ -11,11 +11,11 @@ trap cleanup EXIT
 
 # Setup remote state in artifactory
 terraform remote config \
-  backend=s3 \
-  backend-config="bucket=$REMOTE_STATE_BUCKET" \
-  backend-config="key=$REMOTE_STATE_KEY" \
-  backend-config="encrypt=true" \
-  backend-config="region=$TF_VAR_region"
+  -backend=s3 \
+  -backend-config="bucket=$REMOTE_STATE_BUCKET" \
+  -backend-config="key=$REMOTE_STATE_KEY" \
+  -backend-config="encrypt=true" \
+  -backend-config="region=$TF_VAR_region"
 
 # Try and pull the remote state if there is any
 terraform remote pull
