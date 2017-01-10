@@ -1,4 +1,4 @@
-FROM hashicorp/terraform:0.8.1
+FROM hashicorp/terraform:0.8.2
 
 ENV SHUSH_VERSION 1.3.1
 
