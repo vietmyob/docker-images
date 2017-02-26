@@ -1,5 +1,4 @@
-FROM golang:1.7-alpine
+FROM golang:1.7
 
-RUN apk add --no-cache git
 RUN go get github.com/Masterminds/glide
 
