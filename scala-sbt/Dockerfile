@@ -23,8 +23,8 @@ RUN \
   # Install SBT
   wget "https://dl.bintray.com/sbt/native-packages/sbt/${SBT_VERSION}/sbt-${SBT_VERSION}.tgz" && \
   tar -f "sbt-${SBT_VERSION}.tgz" -x -C /usr/local && \
-  # ln -s /usr/local/sbt/bin/sbt /usr/local/bin/sbt && \
-  # chmod 0755 /usr/local/bin/sbt && \
+  ln -s /usr/local/sbt-launcher-packaging-${SBT_VERSION}/bin/sbt /usr/local/bin/sbt && \
+  /usr/local/bin/sbt && \
 
   # Clean up
   apk del build-dependencies && \
