@@ -1,4 +1,4 @@
-FROM hashicorp/terraform:0.9.0
+FROM hashicorp/terraform:0.9.2
 
 ENV SHUSH_VERSION 1.3.1
 
@@ -11,4 +11,3 @@ RUN curl -sL -o /usr/local/bin/shush \
 ADD entrypoint.sh /usr/local/bin/entrypoint.sh
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
-
