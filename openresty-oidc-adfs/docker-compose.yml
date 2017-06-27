@@ -1,0 +1,12 @@
+---
+version: '2.1'
+services:
+  base:
+    build: .
+    ports:
+      - "9000:9000"
+    volumes:
+      - ".:/conf"
+    command:
+      - "-c"
+      - "/conf/nginx-test.conf"

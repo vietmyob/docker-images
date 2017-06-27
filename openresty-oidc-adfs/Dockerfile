@@ -1,0 +1,3 @@
+FROM openresty/openresty:alpine-fat
+RUN apk add -U openssl-dev git ca-certificates
+RUN /usr/local/openresty/luajit/bin/luarocks install lua-resty-openidc
