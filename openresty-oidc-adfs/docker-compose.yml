@@ -1,6 +1,9 @@
 ---
 version: '2.1'
 services:
+  nginx:
+    image: brndnmtthws/nginx-echo-headers
+
   base:
     build: .
     ports:
@@ -10,3 +13,8 @@ services:
     command:
       - "-c"
       - "/conf/nginx-test.conf"
+    links:
+      - nginx
+    environment:
+      - OIDC_CLIENT_ID
+      - OIDC_CLIENT_SECRET
