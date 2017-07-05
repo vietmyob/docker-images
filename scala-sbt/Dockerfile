@@ -1,4 +1,4 @@
-FROM java:8-jdk-alpine
+FROM openjdk:8-jdk-alpine
 
 ENV SCALA_VERSION 2.12.2
 ENV SCALA_HOME /usr/share/scala
@@ -23,8 +23,8 @@ RUN \
   # Install SBT
   wget "https://dl.bintray.com/sbt/native-packages/sbt/${SBT_VERSION}/sbt-${SBT_VERSION}.tgz" && \
   tar -f "sbt-${SBT_VERSION}.tgz" -x -C /usr/local && \
-  ln -s /usr/local/sbt-launcher-packaging-${SBT_VERSION}/bin/sbt /usr/local/bin/sbt && \
-  /usr/local/bin/sbt && \
+  ln -s /usr/local/sbt/bin/sbt /usr/local/bin/sbt && \
+  sbt sbtVersion && \
 
   # Clean up
   apk del build-dependencies && \
