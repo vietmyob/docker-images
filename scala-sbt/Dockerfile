@@ -1,9 +1,9 @@
 FROM java:8-jdk-alpine
 
-ENV SCALA_VERSION 2.12.1
+ENV SCALA_VERSION 2.12.2
 ENV SCALA_HOME /usr/share/scala
 
-ENV SBT_VERSION 0.13.13
+ENV SBT_VERSION 0.13.15
 
 # Install Bash
 RUN apk add --no-cache bash
