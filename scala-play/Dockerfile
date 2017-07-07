@@ -1,24 +1,24 @@
-FROM anapsix/alpine-java:jdk8
+FROM openjdk:8-jdk-alpine
 
-# Install activator
-RUN apk add --update bash curl openssl ca-certificates && \
-  curl -L -o /tmp/activator.zip \
-    https://downloads.typesafe.com/typesafe-activator/1.3.7/typesafe-activator-1.3.7-minimal.zip && \
-  openssl dgst -sha256 /tmp/activator.zip \
-    | grep '030cf23d3b68e588b44840a66aab82d2f927fe140eba46cce566cec5fc98c27c' \
-    || (echo 'shasum mismatch' && false) && \
-  mkdir -p /opt/activator && \
-  unzip /tmp/activator.zip -d /opt/activator && \
-  rm /tmp/activator.zip && \
-  chmod +x /opt/activator/activator-1.3.7-minimal/activator && \
-  ln -s /opt/activator/activator-1.3.7-minimal/activator /usr/bin/activator && \
-  rm -rf /tmp/* /var/cache/apk/*
+ENV SBT_VERSION 0.13.15
 
-# Prebuild with activator
+# Install Bash
+RUN apk add --no-cache bash
+
+# Install SBT
+RUN apk add --no-cache --virtual=build-dependencies wget && \
+    cd "/tmp" && \
+    wget "https://dl.bintray.com/sbt/native-packages/sbt/${SBT_VERSION}/sbt-${SBT_VERSION}.tgz" && \
+    echo "b6e073d7c201741dcca92cfdd1dd3cd76c42a47dc9d8c8ead8df7117deed7aef  sbt-${SBT_VERSION}.tgz" | sha256sum -c - && \
+    tar -f "sbt-${SBT_VERSION}.tgz" -x -C /usr/local && \
+    ln -s /usr/local/sbt/bin/sbt /usr/local/bin/sbt && \
+    apk del build-dependencies
+
+# Copy the locally configured 2.6.1 Play Scala project
 COPY . /tmp/build/
 
-# activator sometimes failed because of network. retry 3 times.
-RUN cd /tmp/build && \
-  (activator compile || activator compile || activator compile) && \
-  (activator test:compile || activator test:compile || activator test:compile) && \
-  rm -rf /tmp/build
+# Compile source and test to load the dependencies for Play Scala
+RUN cd "/tmp/build" && \
+    sbt compile && \
+    sbt test:compile && \
+    rm -rf /tmp/*
