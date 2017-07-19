@@ -2,7 +2,7 @@
 version: '2.1'
 services:
   nginx:
-    image: brndnmtthws/nginx-echo-headers
+    image: czerasz/http-debugger
 
   base:
     build: .
@@ -17,4 +17,3 @@ services:
       - nginx
     environment:
       - OIDC_CLIENT_ID
-      - OIDC_CLIENT_SECRET
