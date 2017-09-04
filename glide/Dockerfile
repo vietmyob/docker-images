@@ -1,4 +1,4 @@
-FROM golang:1.8
+FROM golang:1.8-alpine
 
-RUN go get github.com/Masterminds/glide
-
+RUN apk add --no-cache git && \
+    go get github.com/Masterminds/glide
