@@ -1,4 +1,4 @@
-FROM fluent/fluentd:v0.12.40-debian
+FROM fluent/fluentd:v0.12.39-debian
 
 USER root
 WORKDIR /home/fluent
