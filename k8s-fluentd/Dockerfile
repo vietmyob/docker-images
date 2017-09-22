@@ -24,3 +24,9 @@ RUN buildDeps="sudo make gcc g++ libc-dev ruby-dev libffi-dev" \
   && rm -rf /var/lib/apt/lists/* \
   && gem sources --clear-all \
   && rm -rf /tmp/* /var/tmp/* /usr/lib/ruby/gems/*/cache/*.gem
+
+# Environment variables
+ENV FLUENTD_OPT=""
+ENV FLUENTD_CONF="/etc/fluentd/fluent.conf"
+
+CMD exec fluentd -c $FLUENTD_CONF $FLUENTD_OPT
