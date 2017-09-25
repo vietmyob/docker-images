@@ -3,5 +3,6 @@ version: "2.0"
 services:
   base:
     build: .
+    image: myobplatform/fluentd-kubernetes-daemonset
     volumes:
     - ".:/etc/fluentd"
