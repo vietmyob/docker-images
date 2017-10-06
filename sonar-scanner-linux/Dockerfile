@@ -10,9 +10,9 @@ WORKDIR /data
 
 ENV PATH "/sonar-scanner-${SONAR_SCANNER_VERSION}/bin:${PATH}"
 
-COPY ./sonar.sh .
+COPY ./sonar-wrapper /usr/bin
 
-ENTRYPOINT ["./sonar.sh"]
+ENTRYPOINT ["sonar-wrapper"]
 
 CMD ["--help"]
 
