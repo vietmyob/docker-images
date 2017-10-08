@@ -17,7 +17,7 @@ json_value="jq -cr"
 
 #----------------------------------------------------------------
 
-SONAR_REPORT_FILE=".sonar/report-task.txt"
+SONAR_REPORT_FILE=".sonarfiles/report-task.txt"
 SONAR_CONFIG_FILE="./sonar-project.properties"
 
 SONAR_HOST_URL_KEY="serverUrl"
@@ -32,16 +32,9 @@ SONAR_API_WAIT_INTERVAL=5
 # sonar.login should not be in the config file
 sonar_login=$(get_value_from_line "$(grep "$SONAR_CONFIG_LOGIN_KEY" "$SONAR_CONFIG_FILE")")
 
-if [[ -n "$sonar_login" ]]; then
+if [[ -n "$sonar_login" ]] && echo "$sonar_login" | grep -q "[A-Za-z0-9]{40}"; then
   die "ERROR: sonar.login should not exist in the sonar-project.properties file - please pass it in as a parameter using -Dsonar.login=... instead."
 fi
-
-for arg in "$@"; do
-  if [[ "$arg" == "-D$SONAR_CONFIG_LOGIN_KEY=*" ]]; then
-    sonar_login=$(get_value_from_line "$arg")
-    break
-  fi
-done
 
 sonar-scanner "$@"
 
