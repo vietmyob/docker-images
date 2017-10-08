@@ -17,7 +17,7 @@ json_value="jq -cr"
 
 #----------------------------------------------------------------
 
-SONAR_REPORT_FILE=".sonarfiles/report-task.txt"
+SONAR_REPORT_FILE=".scannerwork/report-task.txt"
 SONAR_CONFIG_FILE="./sonar-project.properties"
 
 SONAR_HOST_URL_KEY="serverUrl"
