@@ -36,6 +36,8 @@ if [[ -n "$sonar_login" ]] && echo "$sonar_login" | grep -q "[A-Za-z0-9]{40}"; t
   die "ERROR: sonar.login should not exist in the sonar-project.properties file - please pass it in as a parameter using -Dsonar.login=... instead."
 fi
 
+sonar_login="$SONARQUBE_LOGIN_KEY"
+
 sonar-scanner "$@"
 
 if [[ ! -f "$SONAR_REPORT_FILE" ]]; then
