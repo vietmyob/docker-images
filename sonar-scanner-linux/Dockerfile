@@ -16,5 +16,3 @@ COPY ./sonar-wrapper /usr/bin
 
 ENTRYPOINT ["sonar-wrapper"]
 
-CMD ["--help"]
-
