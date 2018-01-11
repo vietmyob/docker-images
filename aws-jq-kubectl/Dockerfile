@@ -1,11 +1,9 @@
-FROM alpine:3.6
+FROM python:2.7.14-alpine3.6
 
-ENV KUBE_LATEST_VERSION="v1.6.3"
+RUN apk update && apk add make curl jq bash openssl
+RUN pip install awscli
 
-RUN apk -v --update add python py-pip ca-certificates jq \
-	&& apk add --update -t deps curl \
-    && pip install --upgrade awscli \
-    && curl -L https://storage.googleapis.com/kubernetes-release/release/${KUBE_LATEST_VERSION}/bin/linux/amd64/kubectl -o /usr/local/bin/kubectl \
- 	&& chmod +x /usr/local/bin/kubectl \
-    && apk -v --purge del py-pip deps \
-    && rm /var/cache/apk/*
+ENV KUBECTLVERSION v1.8.0
+RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/${KUBECTLVERSION}/bin/linux/amd64/kubectl
+RUN chmod +x kubectl
+RUN mv kubectl /usr/local/bin/

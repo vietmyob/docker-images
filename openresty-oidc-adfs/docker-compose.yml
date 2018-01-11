@@ -16,4 +16,5 @@ services:
     links:
       - nginx
     environment:
-      - OIDC_CLIENT_ID
+      - CLIENT_ID
+      - CLIENT_SECRET
