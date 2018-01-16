@@ -1,0 +1,32 @@
+
+if [[ ! -f "$SONAR_REPORT_FILE" ]]; then
+  die "ERROR: File not found: $SONAR_REPORT_FILE"
+fi 
+
+sonar_ce_task_url=$(get_value_from_line "$(grep "$SONAR_CE_TASK_URL_KEY" "$SONAR_REPORT_FILE")")
+sonar_host_url=$(get_value_from_line "$(grep "$SONAR_HOST_URL_KEY" "$SONAR_REPORT_FILE")")
+
+echo -n "INFO: Waiting for SonarQube analysis"
+while [[ "$sonar_analysis_status" != "SUCCESS" ]] && [[ "$sonar_analysis_status" != "FAILED" ]]; do
+  sonar_ce_task_json=$(curl -fsSLu "$sonar_login": "$sonar_ce_task_url")
+  sonar_analysis_status=$(echo "$sonar_ce_task_json" | $json_value '.task.status')
+  sleep $SONAR_API_WAIT_INTERVAL
+  echo -n '.'
+done
+echo ""
+
+if [[ "$sonar_analysis_status" != "SUCCESS" ]]; then
+  die "ERROR: Sonar analysis status is not SUCCESS"
+fi
+echo -n "INFO: Getting sonar analysis ID: "
+sonar_analysis_id=$(echo "$sonar_ce_task_json" | $json_value '.task.analysisId')
+echo "$sonar_analysis_id"
+
+analysis_result=$(curl -fsSLu "$sonar_login": "$sonar_host_url/$SONAR_ANALYSIS_API?analysisId=$sonar_analysis_id" | $json_value '.projectStatus.status')
+
+echo "INFO: Final result: $analysis_result"
+
+if [[ "$analysis_result" != "OK" ]]; then
+  die "ERROR: Analysis came back non-positive"
+fi
+

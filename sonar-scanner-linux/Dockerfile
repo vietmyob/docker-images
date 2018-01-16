@@ -13,6 +13,7 @@ WORKDIR /data
 ENV PATH "/sonar-scanner-${SONAR_SCANNER_VERSION}/bin:${PATH}"
 
 COPY ./sonar-wrapper /usr/bin
+COPY ./common/sonar-await-results /usr/bin/
 
 ENTRYPOINT ["sonar-wrapper"]
 
