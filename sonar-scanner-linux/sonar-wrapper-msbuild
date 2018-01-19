@@ -50,7 +50,6 @@ mono "/usr/bin/sonar-scanner-msbuild/SonarQube.Scanner.MSBuild.exe" "begin" \
 set +e
 dotnet restore --no-cache
 dotnet build
-dotnet test
 set -e
 mono "/usr/bin/sonar-scanner-msbuild/SonarQube.Scanner.MSBuild.exe" "end" "/d:sonar.login=$sonar_login"
 
