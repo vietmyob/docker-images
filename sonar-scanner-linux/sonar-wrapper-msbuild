@@ -26,6 +26,7 @@ SONAR_ANALYSIS_API="api/qualitygates/project_status"
 SONAR_CONFIG_LOGIN_KEY="sonar.login"
 SONAR_CONFIG_PROJECT_KEY="sonar.projectKey"
 SONAR_CONFIG_PROJECT_DIR="sonar.sources"
+SONAR_CONFIG_HOST_URL="sonar.host.url"
 SONAR_API_WAIT_INTERVAL=5
 
 #----------------------------------------------------------------
@@ -33,6 +34,7 @@ SONAR_API_WAIT_INTERVAL=5
 # sonar.login should not be in the config file
 sonar_project_key=$(get_value_from_line "$(grep "$SONAR_CONFIG_PROJECT_KEY" "$SONAR_CONFIG_FILE")")
 sonar_project_dir=$(get_value_from_line "$(grep "$SONAR_CONFIG_PROJECT_DIR" "$SONAR_CONFIG_FILE")")
+sonar_project_host_url=$(get_value_from_line "$(grep "$SONAR_CONFIG_HOST_URL" "$SONAR_CONFIG_FILE")")
 sonar_login=$(get_value_from_line "$(grep "$SONAR_CONFIG_LOGIN_KEY" "$SONAR_CONFIG_FILE")")
 
 if [[ -n "$sonar_login" ]] && echo "$sonar_login" | grep -q "[A-Za-z0-9]{40}"; then
@@ -45,7 +47,7 @@ sonar_login="$SONARQUBE_LOGIN_KEY"
 cd "$sonar_project_dir"
 mono "/usr/bin/sonar-scanner-msbuild/SonarQube.Scanner.MSBuild.exe" "begin" \
   "/d:sonar.login=$sonar_login" \
-  "/d:sonar.host.url=https://sonarqube.jupiter-preprod.platform.myob.com/" \
+  "/d:sonar.host.url=$sonar_project_host_url" \
   "/k:$sonar_project_key"
 set +e
 dotnet restore --no-cache
