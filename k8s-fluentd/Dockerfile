@@ -15,6 +15,7 @@ RUN set -ex \
     && gem install fluent-plugin-cloudwatch-logs -v 0.4.0 \
     && gem install fluent-plugin-kubernetes_metadata_filter -v 0.29.0 \
     && gem install fluent-plugin-prometheus -v 0.3.0 \
+    && gem install fluent-plugin-rewrite-tag-filter -v 1.6.0 \
     && gem install ffi -v 1.9.18 \
     && gem install fluent-plugin-systemd -v 0.0.8 \
     && apk del .build-deps \
