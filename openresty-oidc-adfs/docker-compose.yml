@@ -18,3 +18,4 @@ services:
     environment:
       - CLIENT_ID
       - CLIENT_SECRET
+      - PROXY_PASS_URI=https://google.com
