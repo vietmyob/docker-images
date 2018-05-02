@@ -1,7 +1,10 @@
 ---
-version: "2.0"
+version: '2.3'
 services:
-  base:
+  fluentd:
     build: .
     volumes:
-    - ".:/etc/fluentd"
+    - "./conf:/etc/fluentd"
+    environment:
+      LOG_GROUP_NAME: "my-cluster"
+      PROMETHEUS_SCRAPE_PORT: "9102"

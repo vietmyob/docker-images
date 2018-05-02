@@ -1,0 +1,3 @@
+#!/bin/bash
+# This will trigger fluentd to reload configs on a running local fluentd container
+docker-compose exec fluentd kill -SIGHUP 1

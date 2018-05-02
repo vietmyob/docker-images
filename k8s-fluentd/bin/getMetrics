@@ -1,0 +1,3 @@
+#!/bin/bash
+# This will make a GET request to exposed metrics endpoint on a running local fluentd container
+docker-compose exec fluentd wget -q -O- http://localhost:9102/metrics
