@@ -1,0 +1,21 @@
+---
+version: '2.3'
+
+services:
+  dev:
+    build: .
+    volumes:
+      - ".:/app"
+      - "$HOME/.aws:/root/.aws"
+      - "$HOME/.kube:/root/.kube"
+    environment:
+      - KUBECONFIG
+      - QUEUE_NAME
+
+  test:
+    build: .
+    volumes:
+      - "$HOME/.aws:/root/.aws"
+      - "$HOME/.kube:/root/.kube"
+    environment:
+      - QUEUE_NAME
