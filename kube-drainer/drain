@@ -1,0 +1,42 @@
+#! /bin/bash
+
+set -eo pipefail
+
+data=`cat /dev/stdin`
+
+hook_name=$(echo $data | jq -r '.LifecycleHookName')
+asg_name=$(echo $data | jq -r '.AutoScalingGroupName')
+instance=$(echo $data | jq -r '.EC2InstanceId')
+token=$(echo $data | jq -r '.LifecycleActionToken')
+
+cleanup() {
+  last=$?
+
+  if [ "$last" != "0" ]; then
+    echo "There were errors for hook: $hook_name asg: $asg_name instance: $instance"
+  fi
+
+  exit $last
+}
+
+trap cleanup EXIT
+
+node_name=$(kubectl get nodes -o json | jq -r ".items[] | select(.spec.externalID == \"$instance\") | .metadata.name")
+
+if [ "$node_name" == "" ]; then
+  echo "warn: there is no node for instance $instance so will complete and move on."
+else
+  echo "draining $node_name with timeout after $DRAIN_TIMEOUT..."
+  kubectl drain $node_name --delete-local-data --ignore-daemonsets --force --timeout=$DRAIN_TIMEOUT \
+    || echo "warn: had errors or timeout running drain for node $node_name, but need to move on..."
+fi
+
+aws autoscaling complete-lifecycle-action \
+  --region $AWS_DEFAULT_REGION \
+  --instance-id $instance \
+  --auto-scaling-group-name $asg_name \
+  --lifecycle-hook-name $hook_name \
+  --lifecycle-action-result CONTINUE \
+  --lifecycle-action-token $token
+
+echo "Completed lifecycle hook action for node $node_name($instance)."

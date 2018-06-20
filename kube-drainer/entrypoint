@@ -1,0 +1,6 @@
+#! /bin/bash
+
+set -eo pipefail
+
+echo "Starting to watch queue $QUEUE_NAME..."
+sqs-notify2 -max-retries 5 -workers 1 -region $AWS_DEFAULT_REGION -queue $QUEUE_NAME $@ /app/drain
