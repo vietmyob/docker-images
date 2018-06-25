@@ -37,6 +37,6 @@ aws autoscaling complete-lifecycle-action \
   --auto-scaling-group-name $asg_name \
   --lifecycle-hook-name $hook_name \
   --lifecycle-action-result CONTINUE \
-  --lifecycle-action-token $token
+  --lifecycle-action-token $token || echo "Lifecycle action did not complete, but need to move on..."
 
 echo "Completed lifecycle hook action for node $node_name($instance)."
