@@ -4,7 +4,7 @@ FROM buildkite/agent:3.2
 RUN apk update && apk add make \
     &&  pip install awscli cfn-flip
 
-ENV KUBE_VERSION="v1.10.6"
+ENV KUBE_VERSION="v1.10.5"
 RUN curl -L https://storage.googleapis.com/kubernetes-release/release/${KUBE_VERSION}/bin/linux/amd64/kubectl -o /usr/local/bin/kubectl \
     && chmod +x /usr/local/bin/kubectl 
 
