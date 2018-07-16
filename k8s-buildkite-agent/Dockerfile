@@ -1,7 +1,7 @@
 FROM buildkite/agent:3.2
 
 # kustomize, helm, kubectl, ktmpl, jq, bash, curl, sed, wget
-RUN apk update && apk add make \
+RUN apk update && apk add make coreutils \
     &&  pip install awscli cfn-flip
 
 ENV KUBE_VERSION="v1.10.5"
