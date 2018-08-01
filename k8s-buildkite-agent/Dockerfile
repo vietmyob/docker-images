@@ -1,8 +1,12 @@
+FROM hairyhenderson/gomplate:v2.6.0 as gomplate
+
 FROM buildkite/agent:3.2
 
 # kustomize, helm, kubectl, ktmpl, jq, bash, curl, sed, wget
 RUN apk update && apk add make coreutils \
     &&  pip install awscli cfn-flip
+
+COPY --from=gomplate /gomplate /usr/bin/
 
 ENV KUBE_VERSION="v1.10.5"
 RUN curl -L https://storage.googleapis.com/kubernetes-release/release/${KUBE_VERSION}/bin/linux/amd64/kubectl -o /usr/local/bin/kubectl \
