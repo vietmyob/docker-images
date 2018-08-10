@@ -21,7 +21,7 @@ cleanup() {
 
 trap cleanup EXIT
 
-node_name=$(kubectl get nodes -o json | jq -r ".items[] | select(.spec.externalID == \"$instance\") | .metadata.name")
+node_name=$(kubectl get nodes -o json | jq -r ".items[] | select(.spec.providerID | contains(\"$instance\")) | .metadata.name")
 
 if [ "$node_name" == "" ]; then
   echo "warn: there is no node for instance $instance so will complete and move on."
