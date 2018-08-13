@@ -3,7 +3,7 @@ RUN apk add -U py-pip bash curl jq git
 RUN go get -u github.com/koron/sqs-notify/cmd/sqs-notify2
 ENV PATH $GOPATH/bin:$PATH
 RUN pip install awscli
-RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.9.8/bin/linux/amd64/kubectl \
+RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.11.2/bin/linux/amd64/kubectl \
   && chmod +x ./kubectl \
   && mv ./kubectl /usr/local/bin/kubectl
 
