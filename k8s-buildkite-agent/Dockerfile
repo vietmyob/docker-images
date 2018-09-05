@@ -1,6 +1,6 @@
-FROM hairyhenderson/gomplate:v2.6.0 as gomplate
+FROM hairyhenderson/gomplate:v2.8.0 as gomplate
 
-FROM buildkite/agent:3.2
+FROM buildkite/agent:3.4
 
 # kustomize, helm, kubectl, ktmpl, jq, bash, curl, sed, wget
 RUN apk update && apk add make coreutils \
@@ -18,7 +18,7 @@ RUN curl -L http://storage.googleapis.com/kubernetes-helm/helm-${HELM_VERSION}-l
  && mv linux-amd64/helm /usr/local/bin/ \
  && rm -f /tmp/helm-${HELM_VERSION}-linux-amd64.tar.gz
 
-ENV KUSTOMIZE_VERSION="1.0.3"
+ENV KUSTOMIZE_VERSION="1.0.7"
 RUN curl -L https://github.com/kubernetes-sigs/kustomize/releases/download/v${KUSTOMIZE_VERSION}/kustomize_${KUSTOMIZE_VERSION}_linux_amd64 -o /usr/local/bin/kustomize \
     && chmod +x /usr/local/bin/kustomize
 
