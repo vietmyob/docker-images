@@ -1,4 +1,4 @@
-FROM fluent/fluentd:v1.2.2
+FROM fluent/fluentd:v1.2.5
 USER root
 WORKDIR /home/fluent
 ENV PATH /home/fluent/.gem/ruby/2.3.0/bin:$PATH

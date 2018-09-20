@@ -1,4 +1,4 @@
-FROM python:2.7.14-alpine3.6
+FROM python:2.7.14-alpine3.8
 
 RUN apk update && apk add make curl jq bash openssl
 RUN pip install awscli
