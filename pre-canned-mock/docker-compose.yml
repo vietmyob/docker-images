@@ -1,0 +1,10 @@
+---
+version: '3.4'
+
+services:
+  mock:
+    build: .
+    volumes:
+    - "./app:/data"
+    ports:
+    - 3000:3000

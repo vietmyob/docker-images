@@ -1,0 +1,5 @@
+< @status #{code}
+{
+  "message": "returning status code #{code}",
+  "image": "https://http.cat/#{code}"
+}

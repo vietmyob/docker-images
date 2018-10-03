@@ -1,0 +1,8 @@
+{
+  "id": "#{_1}",
+  "name": "Resource #{_1}",
+  "description": "This is resource number #{_1}",
+  "links": [
+    "{{item-links(#{_1},resources)}}"
+  ]
+}

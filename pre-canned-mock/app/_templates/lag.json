@@ -1,0 +1,7 @@
+{
+  "message": "this response has been delayed by #{_1} ms",
+  "lag": #{_1},
+  "links": [
+    "{{item-links(#{_1},lags)}}"
+  ]
+}

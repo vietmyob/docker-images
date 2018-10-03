@@ -1,0 +1,13 @@
+{
+  "items": [
+    "{{status(200,status)}}",
+    "{{status(201,status)}}",
+    "{{status(401,status)}}",
+    "{{status(403,status)}}",
+    "{{status(429,status)}}",
+    "{{status(500,status)}}"
+  ],
+  "links": [
+    "{{list-links(status)}}"
+  ]
+}

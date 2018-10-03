@@ -1,0 +1,8 @@
+{
+  "ref": "self",
+  "href": "http://#{HOST}/api/#{_2}/#{_1}"
+},
+{
+  "ref": "#{_2}",
+  "href": "http://#{HOST}/api/#{_2}"
+}

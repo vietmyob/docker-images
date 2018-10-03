@@ -1,0 +1,5 @@
+< @status 403
+{
+  "error": "Access forbidden",
+  "details": "https://http.cat/403"
+}

@@ -1,0 +1,9 @@
+{ "items": [
+    "{{resource(1,resources)}}",
+    "{{resource(2,resources)}}",
+    "{{resource(3,resources)}}"
+  ],
+  "links": [
+  "{{list-links(resources)}}"
+  ]
+}

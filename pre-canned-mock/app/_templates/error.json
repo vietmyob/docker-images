@@ -1,0 +1,7 @@
+{
+  "code": #{_1},
+  "image": "https://http.cat/#{_1}",
+  "links": [
+    "{{item-links(#{_1},errors)}}"
+  ]
+}

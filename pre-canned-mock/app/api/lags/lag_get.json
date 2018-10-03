@@ -1,0 +1,14 @@
+{
+  "message": "this response has been delayed by #{lag} ms",
+  "lag": "#{lag}",
+  "links": [
+    {
+      "ref": "self",
+      "href": "http://#{HOST}/api/lags/#{lag}"
+    },
+    {
+      "ref": "items",
+      "href": "http://#{HOST}/api/items"
+    }
+  ]
+}

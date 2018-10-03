@@ -1,0 +1,50 @@
+{
+  "error-rate": 0,
+  "errors" : [
+    {
+      "name": "401-error",
+      "rate": 0.0
+    },{
+      "name": "403-error",
+      "rate": 0.0
+    }
+  ],
+  "simulated-lag": {
+    "default": 50,
+    "paths": [
+      {
+        "match": "^/api/lags/0$",
+        "lag": 0
+      },
+      {
+        "match": "^/api/lags/1000$",
+        "lag": 1000
+      },
+      {
+        "match": "^/api/lags/2000$",
+        "lag": 2000
+      },
+      {
+        "match": "^/api/lags/5000$",
+        "lag": 5000
+      },
+      {
+        "match": "^/api/lags/10000$",
+        "lag": 10000
+      },
+      {
+        "match": "^/api/lags/60000$",
+        "lag": 60000
+      },
+      {
+        "match": "^/api/lags/600000$",
+        "lag": 600000
+      }
+    ]
+  },
+  "routes": [
+    "/api/resources/:resource",
+    "/api/lags/:lag",
+    "/api/status/:code"
+  ]
+}

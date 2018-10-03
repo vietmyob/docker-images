@@ -1,0 +1,4 @@
+{
+  "ref": "self",
+  "href": "http://#{HOST}/api/#{_1}"
+}

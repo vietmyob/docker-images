@@ -1,0 +1,10 @@
+{
+  "items": [
+    "{{error(401,errors)}}",
+    "{{error(403,errors)}}",
+    "{{error(500,errors)}}"
+  ],
+  "links": [
+    "{{list-links(errors)}}"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "items": [
+    "{{lag(0,lags)}}",
+    "{{lag(1000,lags)}}",
+    "{{lag(2000,lags)}}",
+    "{{lag(5000,lags)}}",
+    "{{lag(10000,lags)}}",
+    "{{lag(60000,lags)}}",
+    "{{lag(600000,lags)}}"
+  ],
+  "links": [
+    "{{list-links(lags)}}"
+  ]
+}
